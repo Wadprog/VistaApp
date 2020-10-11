@@ -4,7 +4,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 //custom imports
 
 import MyAccountScreen from "../screens/MyAccountScreen";
-import ListingScreen from "../screens/ListingScreen";
+import MainScreen from "../screens/MainScreen";
 import ListingEditScreen from "../screens/ListingEditScreen";
 import ListingDetailsScreen from "../screens/ListingDetailsScreen";
 
@@ -20,8 +20,9 @@ const TabNavigator = () => {
     >
       <Tab.Screen
         name='listing'
-        component={ListingScreen}
+        component={MainScreen}
         options={{
+       
           tabBarIcon: ({ size, color }) => (
             <MaterialCommunityIcons name='home' color={color} size={size} />
           ),

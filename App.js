@@ -27,12 +27,10 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Post from "./app/components/Post"
 const App = () => {
   return (
-    <Screen>
-      <Post postDetails={{ date:'9/1/2010', description:' Lorem Itsum lorea vera palabra', image:require('./app/assets/mosh.jpg')}} user ={{name : 'Ricardo ', image:require('./app/assets/mosh.jpg')}}/>
-    </Screen>
-    // <NavigationContainer theme={myTheme}>
-    //   <WelcomeNav />
-    // </NavigationContainer>
+    
+    <NavigationContainer theme={myTheme}>
+      <WelcomeNav />
+    </NavigationContainer>
   );
 };
 
