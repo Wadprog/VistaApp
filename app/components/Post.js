@@ -1,91 +1,128 @@
 import React from 'react'
-import { View, StyleSheet ,Image,Button} from 'react-native'
-
+import { View, StyleSheet, Image } from 'react-native'
+import {
+  Entypo,
+  AntDesign,
+  MaterialCommunityIcons
+} from '@expo/vector-icons'
 //custom imports 
 import colors from '../config/colors'
 import Text from "./AppText"
-import AppTextInput from './AppTextInput'
-import ListItem from './ListItem'
+import Button from './Btn'
+import Row from './Row'
+import PostAvatar from './PostAvatar'
+import Separator from './Separator'
 
-const Post = ({user, postDetails, style}) => {
-    return (
-        <View style={[styles.container, style]}>
-          <View style={styles.header}>
-         <ListItem style={styles.listItem}image={user.image}  title={user.name} subTitle={postDetails.date} />
-         {postDetails.description&&<Text style={styles.description}> {postDetails.description}</Text>}
+import styled from 'styled-components/native'
+const Container = styled.View`
+	flex: 1;
+`
+const Header = styled.View`
+	height: 50px;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 6px;
+	padding: 0 11px;
+`
+
+const Post = ({ user, text, image, postDetails, style, children }) => {
+  return (
+    <>
+      <Container>
+        <Header>
+
+
+          <PostAvatar
+            name='Ray'
+            source={require('../assets/user3.jpg')}
+            time='9m'
+          />
+          <Text style={styles.post}>{text}</Text>
+          {image && <Image style={styles.image} source={image} />}
+        </Header>
+        <View style={styles.footer}>
+          <View style={styles.footerCount}>
+            <Row>
+              <View style={styles.iconCount}>
+                <AntDesign name='like1' size={12} color='#FFFFFF' />
+              </View>
+              <Text style={styles.textCount}>Likes</Text>
+            </Row>
+            <Text style={styles.textCount}>Comments</Text>
           </View>
-        {postDetails.image&& <Image style={styles.image} source={postDetails.image} resizeMode='stretch'/> }
+          <Separator />
+          <View style={styles.footerMenu}>
+            <Button
+              IconLibrary={AntDesign}
+              iconName='like2'
+              size={20}
+              color='#424040'
+              title='Like' />
 
-        <View style={styles.reactionsSummary}>
-          <View style={styles.summary_reactions}>
-            <Text>7</Text>
-          </View>
+            <Button
+              iconName='comment-outline'
+              size={20}
+              color='#424040'
+              title='Comment' />
 
-          <View style={styles.sharesComments}>
-          <Text>5 comments</Text>
+            <Button
+              iconName='share-outline'
+              size={20}
+              color='#424040'
+              title='Share' />
+
           </View>
         </View>
-
-        <View style={styles.reactionsSummary}>
-          <View style={styles.summary_reactions}>
-          <Button title='like'/>
-          </View>
-
-          <View style={styles.sharesComments}>
-          <Button title='comment'/>
-          </View>
-        </View>
-<View style={styles.commentContainer}>
-<ListItem style={styles.listItem}image={user.image}  />
-<AppTextInput  placeholder='write a comment '/>
-</View>
-
-      
-      </View>
-    )
+      </Container>
+    </>
+  )
 }
 
 const styles = StyleSheet.create({
-  commentContainer:{
-    flexDirection:"row",
-    justifyContent:"space-between",
-    padding:7,
+  footer: {
+    paddingVertical: 0,
+    paddingHorizontal: 11,
   },
-    container: {
-      backgroundColor: colors.light,
-      borderRadius: 20,
-      overflow: "hidden",
-     
-    },
+  footerCount: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingVertical: 9,
+    paddingHorizontal: 0,
+  },
+  footerMenu: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingVertical: 9,
+    paddingHorizontal: 0,
+  },
+  iconCount: {
+    backgroundColor: "#1878f3",
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    marginRight: 6
+  },
 
-  header:{
-    padding:10
+  image: {
+    marginTop: 9,
+    width: "100%",
+    height: 300,
   },
-    listItem:{
-      backgroundColor: colors.light,
-    },
-    detailsContainer: {
-      padding: 20,
-    },
-    image: {
-      width: "100%",
-      height: 200,
-    },
-    subtitle: {
-      color: colors.secondary,
-      fontWeight: "700",
-    },
-    reactionsSummary:{
-      flexDirection:"row",
-      justifyContent:"space-between",
-      padding:7,
-    }
-    ,
-    summary:{},
-    title: {
-      marginBottom: 7,
-      fontWeight: "500",
-    },
-  });
-  
+  post: {
+    fontSize: 12,
+    color: "#222121",
+    lineHeight: 16,
+    paddingVertical: 0,
+    paddingHorizontal: 11,
+
+  },
+  textCount: {
+    fontSize: 11,
+    color: "#424040"
+  }
+});
+
 export default Post
